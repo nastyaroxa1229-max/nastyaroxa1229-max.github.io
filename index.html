@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тайный Санта 🎅✨</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: "Montserrat", sans-serif;
+            background: url("https://images.unsplash.com/photo-1543589077-47d81606c1bf") center/cover no-repeat fixed;
+            color: white;
+            text-align: center;
+        }
+        .overlay {
+            backdrop-filter: blur(6px) brightness(0.55);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        h1 { font-size: 38px; margin-bottom: 20px; }
+        p { font-size: 18px; margin-bottom: 30px; }
+        form {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 25px;
+            border-radius: 14px;
+            max-width: 420px;
+            margin: auto;
+            backdrop-filter: blur(6px);
+        }
+        input, textarea {
+            width: 100%;
+            margin: 10px 0;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            font-size: 15px;
+        }
+        button {
+            background: #ff2e4d;
+            color: white;
+            padding: 14px;
+            border: none;
+            width: 100%;
+            font-size: 18px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover { background: #ff1a38; }
+    </style>
+</head>
+<body>
+<div class="overlay">
+    <h1>🎁 Тайный Санта — исполни желание!</h1>
+    <p>Напиши свою хотелку, и магия Нового года сама найдёт дорогу до тебя 🎄✨</p>
+    <form onsubmit="handleSubmit(event)">
+        <input type="text" id="name" required placeholder="Ваше имя">
+        <input type="text" id="region" required placeholder="Регион">
+        <input type="text" id="address" required placeholder="Адрес доставки">
+        <textarea id="wish" rows="4" required placeholder="Ваша хотелка 🎁"></textarea>
+        <button type="submit">Отправить желание ✨</button>
+    </form>
+    <p id="success" style="display:none; margin-top:20px; font-size:20px;">✨ Ваше желание отправлено! ✨</p>
+</div>
+<script>
+function handleSubmit(event) {
+    event.preventDefault();
+    document.getElementById("success").style.display = "block";
+}
+</script>
+</body>
+</html>
