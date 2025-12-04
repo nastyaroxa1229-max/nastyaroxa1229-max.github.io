@@ -384,23 +384,15 @@
   </div>
 
 <script>
-  function showHowItWorks() {
-  const popup = document.getElementById("howPopup");
-  popup.style.display = "flex";
-}
 
-function closeHow() {
-  const popup = document.getElementById("howPopup");
-  popup.style.display = "none";
-}
-
+// === ВСПЛЫВАШКА "Желание отправлено" ===
 function sendWish() {
-  const p = popup;
+  const p = document.getElementById("popup");
   p.style.display = "flex";
   setTimeout(()=> p.style.display = "none", 2400);
 }
 
-/* ❄ снег */
+// === СНЕГ ===
 function createSnowflake() {
   const snow = document.createElement("div");
   snow.classList.add("snowflake");
@@ -413,7 +405,7 @@ function createSnowflake() {
 }
 setInterval(createSnowflake, 150);
 
-/* popups */
+// === МАЛЫЕ POPUP’Ы ===
 const wishes = [
   "Уютный плед ❄️",
   "Гирлянда ✨",
@@ -447,8 +439,9 @@ function showPopup(message) {
 }
 
 function generateWish() {
-  const random = wishes[Math.floor(Math.random() * wishes.length)];
-  showPopup("🎲 Твоя случайная хотелка:<br><br><b>" + random + "</b>");
+  showPopup("🎲 Твоя случайная хотелка:<br><br><b>" +
+            wishes[Math.floor(Math.random() * wishes.length)] +
+            "</b>");
 }
 
 function checkStatus() {
@@ -456,24 +449,34 @@ function checkStatus() {
 }
 
 function showHoroscope() {
-  const random = horoscopes[Math.floor(Math.random() * horoscopes.length)];
-  showPopup("🔮 Новогодний прогноз:<br><br><b>" + random + "</b>");
+  showPopup("🔮 Новогодний прогноз:<br><br><b>" +
+            horoscopes[Math.floor(Math.random() * horoscopes.length)] +
+            "</b>");
 }
-  function showHowItWorks() {
+
+// === ГЛАВНЫЙ POPUP "КАК РАБОТАЕТ" ===
+function showHowItWorks() {
   const popup = document.getElementById("howPopup");
-  popup.classList.add("show");
+  popup.style.display = "flex";
+
+  // Небольшая задержка чтобы включить анимацию плавно
+  setTimeout(() => popup.classList.add("show"), 20);
 }
 
 function closeHow() {
   const popup = document.getElementById("howPopup");
   popup.classList.remove("show");
 
+  // убираем через задержку после завершения анимации
   setTimeout(() => popup.style.display = "none", 350);
 }
 
+</script>
+
+
  
 
-</script>
+
 <!-- Popup - КАК РАБОТАЕТ САЙТ -->
 <div id="howPopup" class="how-popup">
   <div class="how-box">
