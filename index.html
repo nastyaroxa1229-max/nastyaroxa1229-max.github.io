@@ -228,6 +228,12 @@
     </div>
 
     <button onclick="sendWish()">Отправить желание</button>
+
+<!-- Новые кнопки -->
+<button class="extra-btn" onclick="generateWish()">🎲 Сгенерировать желание</button>
+<button class="extra-btn" onclick="checkStatus()">📦 Проверить статус подарка</button>
+<button class="extra-btn" onclick="showHoroscope()">🔮 Новогодний гороскоп</button>
+
   </div>
 
   <!-- Popup -->
@@ -257,6 +263,65 @@
   }
 
   setInterval(createSnowflake, 150);
+</script>
+<!-- Дополнительный popup -->
+<div class="popup" id="extraPopup">
+  <div class="popup-content" id="extraPopupText"></div>
+</div>
+
+<script>
+
+const wishes = [
+  "Уютный новогодний плед ❄️",
+  "Светящаяся гирлянда ✨",
+  "Коробка любимых сладостей 🍬",
+  "Аромасвеча с запахом Нового года 🎄",
+  "Мини-лампа для фото 📸",
+  "Игрушка на ёлку с моим именем 🎀",
+  "Набор горячего шоколада ☕",
+  "Павербанк (да, Санта о тебе заботится) 🔋",
+];
+
+const horoscopes = [
+  "Этот Новый год принесёт тебе подарок, который ты давно хотел 🎁",
+  "Твой Тайный Санта уже выбрал то, что заставит тебя улыбнуться ✨",
+  "Грядёт сюрприз, который согреет твоё сердце ❄️",
+  "Тебя ждёт подарок «как в кино» — яркий и неожиданный 🎬",
+  "Твой Санта вложил в подарок немного магии 🎀",
+  "Скоро случится маленькое чудо — будь готов 🎄",
+];
+
+function showPopup(message) {
+  const popup = document.getElementById("extraPopup");
+  const text = document.getElementById("extraPopupText");
+
+  text.innerHTML = message;
+  popup.style.display = "flex";
+
+  setTimeout(() => {
+    popup.style.opacity = "1";
+  }, 50);
+
+  setTimeout(() => {
+    popup.style.opacity = "0";
+    setTimeout(() => popup.style.display = "none", 300);
+  }, 2600);
+}
+
+function generateWish() {
+  const random = wishes[Math.floor(Math.random() * wishes.length)];
+  showPopup("🎲 Твоя случайная хотелка:<br><br><b>" + random + "</b>");
+}
+
+function checkStatus() {
+  showPopup("📦 Твой подарок упаковывается<br>и скоро отправится к тебе! 🎁✨");
+}
+
+function showHoroscope() {
+  const random = horoscopes[Math.floor(Math.random() * horoscopes.length)];
+  showPopup("🔮 Новогодний прогноз:<br><br><b>" + random + "</b>");
+}
+
 </script>
 
 </body>
