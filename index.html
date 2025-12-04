@@ -5,199 +5,146 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Тайный Санта 🎅✨</title>
 
-  <!-- Праздничный шрифт -->
-  <link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Новый праздничный русский шрифт -->
+  <link href="https://fonts.googleapis.com/css2?family=Rubik+Bubbles&display=swap" rel="stylesheet">
 
   <style>
-    /* Базовые стили и фон страницы */
-    html,body{height:100%;margin:0;padding:0}
+    /* Фон как в самом первом коде */
     body {
-      font-family: "Mountains of Christmas", cursive, Arial, sans-serif;
-      color: #fff;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      min-height:100vh;
-      /* Надёжный фон с запасным градиентом */
-      background-color:#0b1220;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       background-image:
-        linear-gradient(180deg, rgba(6,10,20,0.55), rgba(6,10,20,0.55)),
-        url("https://images.unsplash.com/photo-1601924582975-3b3fbd6b6f2b?auto=format&fit=crop&w=1600&q=80");
-      background-position:center;
-      background-repeat:no-repeat;
-      background-size:cover;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      padding:20px;
-      box-sizing:border-box;
+        linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+        url('https://images.unsplash.com/photo-1513639725746-c5d3e861f32a?auto=format&fit=crop&w=1600&q=80');
+      background-size: cover;
+      background-position: center;
+      font-family: 'Rubik Bubbles', cursive;
+      color: white;
     }
 
-    /* Контейнер формы */
+    /* Контейнер */
     .container {
-      width:100%;
-      max-width:480px;
-      background: rgba(0,0,0,0.56);
-      border-radius:16px;
-      padding:32px 28px;
-      position:relative;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.6), 0 0 40px rgba(255,255,255,0.04) inset;
-      backdrop-filter: blur(6px);
+      background: rgba(0, 0, 0, 0.55);
+      padding: 30px;
+      border-radius: 16px;
+      max-width: 480px;
+      width: 90%;
+      text-align: center;
+      backdrop-filter: blur(5px);
+      position: relative;
     }
 
-    /* Лампочки (гирлянда) */
-    .lanterns {
-      position:absolute;
-      left:50%;
-      transform:translateX(-50%);
-      top:-28px;
-      width:86%;
-      display:flex;
-      justify-content:space-between;
-      pointer-events:none;
-    }
-    .lantern {
-      width:18px; height:18px; border-radius:50%;
-      box-shadow:0 0 10px rgba(255,255,255,0.9);
-      animation: glow 2.2s infinite ease-in-out;
-    }
-    .lantern:nth-child(1){ background:#ff6b6b; animation-delay:0 }
-    .lantern:nth-child(2){ background:#ffd166; animation-delay:.25s }
-    .lantern:nth-child(3){ background:#8ac926; animation-delay:.5s }
-    .lantern:nth-child(4){ background:#4d96ff; animation-delay:.75s }
-    .lantern:nth-child(5){ background:#ff8fab; animation-delay:1s }
-
-    @keyframes glow {
-      0% { opacity:.45; transform: translateY(0) }
-      50% { opacity:1; transform: translateY(-3px) }
-      100% { opacity:.45; transform: translateY(0) }
+    /* Текст под заголовком — крупный, сияющий */
+    .lead {
+      font-size: 20px;
+      margin-top: 10px;
+      margin-bottom: 20px;
+      text-shadow: 0 0 8px rgba(255, 200, 240, 0.9), 
+                   0 0 14px rgba(255, 120, 200, 0.5);
     }
 
-    h2 {
-      margin:0 0 8px 0;
-      text-align:center;
-      font-size:30px;
-      line-height:1;
+    .field-wrapper {
+      position: relative;
+      margin-bottom: 12px;
     }
-    p.lead { margin:0 0 18px 0; text-align:center; opacity:0.95 }
 
-    .field-wrapper { position:relative; margin-bottom:12px; }
     .input-field, select, textarea {
-      width:100%;
-      padding:12px 46px 12px 14px;
-      border-radius:10px;
-      border:1px solid rgba(255,255,255,0.15);
-      background: rgba(255,255,255,0.06);
-      color:white;
-      font-size:16px;
-      box-sizing:border-box;
-      outline:none;
-      transition:box-shadow .18s, transform .08s;
-      font-family: "Mountains of Christmas", cursive;
+      width: 100%;
+      padding: 12px 46px 12px 14px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.3);
+      background: rgba(255,255,255,0.15);
+      color: white;
+      font-size: 18px;
+      font-family: 'Rubik Bubbles', cursive;
+      outline: none;
+      box-sizing: border-box;
     }
-    .input-field:focus, select:focus, textarea:focus {
-      box-shadow: 0 6px 18px rgba(0,0,0,0.55), 0 0 14px rgba(255,255,255,0.06) inset;
-      transform: translateY(-1px);
-    }
-    ::placeholder{ color: rgba(255,255,255,0.85) }
 
-    /* Иконки справа, отцентрованы */
     .icon {
-      position:absolute;
-      right:12px;
-      top:50%;
-      transform:translateY(-50%);
-      font-size:18px;
-      opacity:0.95;
-      pointer-events:none;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      width:28px; height:28px;
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 20px;
+      pointer-events: none;
     }
 
     button {
-      margin-top:6px;
-      width:100%;
-      padding:14px;
-      font-size:17px;
-      border-radius:10px;
-      border:none;
-      background:linear-gradient(90deg,#ff4976,#ff2e63);
-      color:white;
-      cursor:pointer;
-      box-shadow:0 8px 30px rgba(255,46,99,0.14);
-      transition: transform .12s ease, box-shadow .12s ease;
+      width: 100%;
+      padding: 15px;
+      margin-top: 10px;
+      background: linear-gradient(90deg,#ff4976,#ff2e63);
+      border: none;
+      border-radius: 10px;
+      color: white;
+      font-size: 20px;
+      cursor: pointer;
+      box-shadow: 0 8px 25px rgba(255,40,100,0.4);
+      transition: 0.25s;
+      font-family: 'Rubik Bubbles', cursive;
     }
-    button:hover{ transform: translateY(-3px); box-shadow:0 14px 40px rgba(255,46,99,0.16) }
 
-    /* popup + анимация подарка */
+    button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 35px rgba(255,40,100,0.6);
+    }
+
+    /* Popup + анимация */
     .popup {
       display:none;
-      position:fixed;
-      inset:0;
-      background:rgba(0,0,0,0.86);
-      align-items:center; justify-content:center;
-      z-index:9999;
-      flex-direction:column;
-      color:white;
-      text-align:center;
-      padding:20px;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      color: white;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+      z-index: 99;
     }
-    .gift {
-      font-size:84px;
-      transform-origin:center;
-      animation: fly 2.6s ease forwards;
-      filter: drop-shadow(0 8px 20px rgba(0,0,0,0.6));
-    }
-    @keyframes fly {
-      0% { transform: translateY(0) scale(1); opacity:1 }
-      35% { transform: translateY(-90px) scale(1.08) rotate(-6deg) }
-      70% { transform: translateY(-260px) scale(.9) rotate(6deg); opacity:.9 }
-      100% { transform: translateY(-720px) scale(.3) rotate(12deg); opacity:0 }
-    }
-    .popup h3 { margin:10px 0 6px; font-size:26px }
-    .popup p { margin:0 0 8px; opacity:.95 }
 
-    /* отзывчивость */
-    @media (max-width:480px){
-      .container{ padding:20px; margin:12px; border-radius:12px }
-      h2{ font-size:26px }
-      .gift{ font-size:64px }
+    .gift {
+      font-size: 80px;
+      animation: fly 2.5s ease forwards;
+    }
+
+    @keyframes fly {
+      0% { transform: translateY(0) scale(1);opacity:1 }
+      50% { transform: translateY(-200px) scale(1.1); }
+      100% { transform: translateY(-600px) scale(0.3); opacity:0 }
     }
   </style>
 </head>
+
 <body>
 
-  <div class="container" role="main" aria-label="Форма Тайный Санта">
-    <div class="lanterns" aria-hidden="true">
-      <div class="lantern"></div>
-      <div class="lantern"></div>
-      <div class="lantern"></div>
-      <div class="lantern"></div>
-      <div class="lantern"></div>
-    </div>
-
-    <h2>🎅 Тайный Санта — напиши своё желание</h2>
+  <div class="container">
+    <h2>🎅 Тайный Санта</h2>
     <p class="lead">Мы отправим его на Wildberries — просто заполни форму 🎁</p>
 
     <div class="field-wrapper">
-      <input id="name" class="input-field" placeholder="Имя" aria-label="Имя">
+      <input id="name" class="input-field" placeholder="Имя">
       <div class="icon">👤</div>
     </div>
 
     <div class="field-wrapper">
-      <input id="region" class="input-field" placeholder="Регион" aria-label="Регион">
+      <input id="region" class="input-field" placeholder="Регион">
       <div class="icon">📍</div>
     </div>
 
     <div class="field-wrapper">
-      <input id="address" class="input-field" placeholder="Адрес пункта выдачи" aria-label="Адрес">
+      <input id="address" class="input-field" placeholder="Адрес ПВЗ">
       <div class="icon">🏤</div>
     </div>
 
     <div class="field-wrapper">
-      <select id="category" class="input-field" aria-label="Категория">
-        <option value="">Выбери категорию подарка</option>
+      <select id="category" class="input-field">
+        <option value="">Выбери категорию</option>
         <option>Техника</option>
         <option>Сладости</option>
         <option>Удиви меня</option>
@@ -206,50 +153,26 @@
     </div>
 
     <div class="field-wrapper">
-      <textarea id="wish" class="input-field" rows="3" placeholder="Ваша хотелка" aria-label="Хотелка"></textarea>
+      <textarea id="wish" class="input-field" rows="3" placeholder="Твоя хотелка"></textarea>
       <div class="icon">✨</div>
     </div>
 
-    <button id="sendBtn" type="button">Отправить желание</button>
+    <button onclick="sendWish()">Отправить желание</button>
   </div>
 
-  <!-- POPUP -->
-  <div class="popup" id="popup" role="dialog" aria-modal="true" aria-hidden="true">
-    <div class="gift" aria-hidden="true">🎁</div>
-    <h3>✨ Желание принято!</h3>
-    <p>Оно уже в пути к твоему Тайному Санте 🎅</p>
+  <div class="popup" id="popup">
+    <div class="gift">🎁</div>
+    <h3>Желание принято!</h3>
+    <p>Оно уже улетает к твоему Тайному Санте 🎄</p>
   </div>
 
 <script>
-  // Отправка и показ попапа + простая валидация
-  document.getElementById('sendBtn').addEventListener('click', function(){
-    const name = document.getElementById('name').value.trim();
-    const region = document.getElementById('region').value.trim();
-    const address = document.getElementById('address').value.trim();
-    const wish = document.getElementById('wish').value.trim();
-    const category = document.getElementById('category').value;
-
-    if(!name || !region || !address || !wish || !category){
-      alert('Пожалуйста, заполни все поля 🎅');
-      return;
-    }
-
-    // Показать popup
-    const popup = document.getElementById('popup');
-    popup.style.display = 'flex';
-    popup.setAttribute('aria-hidden','false');
-
-    // Здесь можно отправить данные на сервер / в Google Sheets / в Telegram
-    console.log('Отправлено:', {name, region, address, category, wish});
-
-    // Скрыть после анимации (время совпадает с длительностью анимации)
-    setTimeout(()=>{
-      popup.style.display = 'none';
-      popup.setAttribute('aria-hidden','true');
-      // Можно очистить форму:
-      // document.getElementById('name').value='';
-    }, 2600);
-  });
+  function sendWish() {
+    const p = popup;
+    p.style.display = "flex";
+    setTimeout(()=> p.style.display = "none", 2400);
+  }
 </script>
+
 </body>
 </html>
