@@ -1,125 +1,169 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Тайный Санта 🎅✨</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: "Montserrat", sans-serif;
-            background: url("https://images.unsplash.com/photo-1543589077-47d81606c1bf") center/cover no-repeat fixed;
-            color: white;
-            text-align: center;
-        }
-        .overlay {
-            backdrop-filter: blur(6px) brightness(0.55);
-            min-height: 100vh;
-            padding: 40px 20px;
-        }
-        h1 { font-size: 38px; margin-bottom: 20px; }
-        p { font-size: 18px; margin-bottom: 30px; }
-        form {
-            background: rgba(255, 255, 255, 0.15);
-            padding: 25px;
-            border-radius: 14px;
-            max-width: 420px;
-            margin: auto;
-            backdrop-filter: blur(6px);
-        }
-        input, textarea {
-            width: 100%;
-            margin: 10px 0;
-            padding: 14px;
-            border: none;
-            border-radius: 10px;
-            font-size: 15px;
-        }
-        button {
-            background: #ff2e4d;
-            color: white;
-            padding: 14px;
-            border: none;
-            width: 100%;
-            font-size: 18px;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        button:hover { background: #ff1a38; }
-    </style>
-</head>
-<body>
-<div class="overlay">
-    <h1>🎁 Тайный Санта — исполни желание!</h1>
-    <p>Напиши свою хотелку, и магия Нового года сама найдёт дорогу до тебя 🎄✨</p>
-    <form onsubmit="handleSubmit(event)">
-        <input type="text" id="name" required placeholder="Ваше имя">
-        <input type="text" id="region" required placeholder="Регион">
-        <input type="text" id="address" required placeholder="Адрес доставки">
-        <textarea id="wish" rows="4" required placeholder="Ваша хотелка 🎁"></textarea>
-        <button type="submit">Отправить желание ✨</button>
-    </form>
-    <p id="success" style="display:none; margin-top:20px; font-size:20px;">✨ Ваше желание отправлено! ✨</p>
-</div>
-<script>
-function handleSubmit(event) {
-    event.preventDefault();
+<!-- СТИЛИ -->
+<style>
+  .container {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 30px;
+    border-radius: 14px;
+    max-width: 450px;
+    margin: auto;
+    backdrop-filter: blur(4px);
 
-    // Создаём затемнение фона
-    const overlay = document.createElement("div");
-    overlay.style.position = "fixed";
-    overlay.style.left = "0";
-    overlay.style.top = "0";
-    overlay.style.width = "100%";
-    overlay.style.height = "100%";
-    overlay.style.background = "rgba(0,0,0,0.6)";
-    overlay.style.display = "flex";
-    overlay.style.justifyContent = "center";
-    overlay.style.alignItems = "center";
-    overlay.style.zIndex = "9999";
-    overlay.style.animation = "fadeIn 0.5s ease";
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
 
-    // Создаём саму анимационную карточку
-    const box = document.createElement("div");
-    box.style.background = "white";
-    box.style.color = "#333";
-    box.style.padding = "30px";
-    box.style.borderRadius = "16px";
-    box.style.maxWidth = "320px";
-    box.style.textAlign = "center";
-    box.style.fontFamily = "Montserrat, sans-serif";
-    box.style.animation = "pop 0.5s ease";
+  .field-wrapper {
+    position: relative;
+    width: 100%;
+  }
 
-    box.innerHTML = `
-        <div style="font-size: 45px; margin-bottom: 10px;">🎅✨</div>
-        <h2 style="margin: 0 0 10px; font-size: 24px;">Желание принято!</h2>
-        <p style="font-size: 16px; margin-bottom: 15px;">
-            Ваш подарок уже отправляется<br>к Тайному Санте 🎁
-        </p>
-    `;
+  .input-field, select {
+    width: 100%;
+    padding: 12px 42px 12px 14px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.4);
+    background: rgba(255,255,255,0.2);
+    color: white;
+    outline: none;
+    box-sizing: border-box;
+    appearance: none;
+  }
 
-    overlay.appendChild(box);
-    document.body.appendChild(overlay);
+  .input-field::placeholder {
+    color: rgba(255,255,255,0.85);
+  }
 
-    // Закрытие по клику
-    overlay.onclick = () => overlay.remove();
-}
+  /* ИКОНКИ справа */
+  .icon {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    opacity: 0.9;
+  }
 
-// CSS-анимации
-const style = document.createElement("style");
-style.innerHTML = `
-@keyframes fadeIn {
+  button {
+    background: #ff2e63;
+    border: none;
+    color: white;
+    padding: 14px;
+    font-size: 17px;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    transition: 0.25s;
+  }
+
+  button:hover {
+    background: #ff1e55;
+    transform: translateY(-2px);
+  }
+
+  /* POPUP */
+  .popup {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.8);
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 24px;
+    text-align: center;
+    animation: fadeIn 0.6s ease forwards;
+  }
+
+  @keyframes fadeIn {
     from { opacity: 0; }
-    to   { opacity: 1; }
-}
-@keyframes pop {
-    0% { transform: scale(0.6); opacity: 0; }
-    100% { transform: scale(1); opacity: 1; }
-}
-`;
-document.head.appendChild(style);
+    to { opacity: 1; }
+  }
+
+  /* АНИМАЦИЯ УЛЕТАЮЩЕГО ПОДАРКА */
+  .gift {
+    font-size: 70px;
+    animation: fly 2.5s ease forwards;
+  }
+
+  @keyframes fly {
+    0% { transform: translateY(0) scale(1); opacity: 1; }
+    40% { transform: translateY(-80px) scale(1.1); }
+    70% { transform: translateY(-200px) scale(0.9); opacity: 0.8; }
+    100% { transform: translateY(-500px) scale(0.3); opacity: 0; }
+  }
+</style>
+
+<!-- ФОРМА -->
+<div class="container">
+  <h2>🎅 Тайный Санта — напиши своё желание! 🎁</h2>
+
+  <div class="field-wrapper">
+    <input class="input-field" id="name" placeholder="Имя" />
+    <div class="icon">👤</div>
+  </div>
+
+  <div class="field-wrapper">
+    <input class="input-field" id="region" placeholder="Регион" />
+    <div class="icon">📍</div>
+  </div>
+
+  <div class="field-wrapper">
+    <input class="input-field" id="address" placeholder="Адрес пункта выдачи" />
+    <div class="icon">🏠</div>
+  </div>
+
+  <div class="field-wrapper">
+    <select id="category" class="input-field">
+      <option value="">Выбери категорию подарка</option>
+      <option>Техника</option>
+      <option>Сладости</option>
+      <option>Удиви меня</option>
+    </select>
+    <div class="icon">🎁</div>
+  </div>
+
+  <div class="field-wrapper">
+    <textarea class="input-field" id="wish" placeholder="Твоя хотелка" rows="3"></textarea>
+    <div class="icon">✨</div>
+  </div>
+
+  <button onclick="sendWish()">Отправить желание</button>
+</div>
+
+<!-- POPUP -->
+<div class="popup" id="popup">
+  <div>
+    <div class="gift">🎁</div>
+    <h2>✨ Желание отправляется Санте! ✨</h2>
+    <p>Держись… Новогодняя магия уже в пути 🎄</p>
+  </div>
+</div>
+
+<!-- SCRIPT -->
+<script>
+  function sendWish() {
+    const name = document.getElementById("name").value.trim();
+    const region = document.getElementById("region").value.trim();
+    const address = document.getElementById("address").value.trim();
+    const wish = document.getElementById("wish").value.trim();
+    const category = document.getElementById("category").value.trim();
+
+    if (!name || !region || !address || !wish || !category) {
+      alert("Заполни все поля 🎅");
+      return;
+    }
+
+    const popup = document.getElementById("popup");
+    popup.style.display = "flex";
+
+    console.log("Отправлено:", { name, region, address, wish, category });
+
+    setTimeout(() => {
+      popup.style.display = "none";
+    }, 2600);
+  }
 </script>
 
-</body>
-</html>
