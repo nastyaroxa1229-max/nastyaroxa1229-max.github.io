@@ -5,11 +5,13 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Тайный Санта 🎅✨</title>
 
-  <!-- Праздничный русский шрифт -->
-  <link href="https://fonts.googleapis.com/css2?family=Rubik+Wet+Paint&display=swap" rel="stylesheet">
+  <!-- Новый праздничный кириллица-шрифт для заголовков -->
+  <link href="https://fonts.googleapis.com/css2?family=Ruslan+Display&display=swap" rel="stylesheet">
+
+  <!-- Праздничный рукописный шрифт для полей -->
+  <link href="https://fonts.googleapis.com/css2?family=Marck+Script&display=swap" rel="stylesheet">
 
   <style>
-    /* Фон + светящиеся края */
     body {
       margin: 0;
       padding: 0;
@@ -17,18 +19,21 @@
       display: flex;
       justify-content: center;
       align-items: center;
+
       background-image:
-        linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
+        linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
         url('https://images.unsplash.com/photo-1513639725746-c5d3e861f32a?auto=format&fit=crop&w=1600&q=80');
       background-size: cover;
       background-position: center;
-      font-family: 'Neucha', cursive;
+
       color: #ffe9ff;
 
       box-shadow:
         inset 0 0 80px rgba(255, 0, 80, 0.5),
         inset 0 0 140px rgba(255, 200, 255, 0.35),
         inset 0 0 200px rgba(255, 100, 200, 0.25);
+
+      font-family: 'Ruslan Display', cursive;
     }
 
     /* Гирлянда */
@@ -61,7 +66,7 @@
       100% { opacity: 1; transform: scale(1.25); }
     }
 
-    /* Контейнер формы */
+    /* Основной блок */
     .container {
       background: rgba(0, 0, 0, 0.55);
       padding: 30px;
@@ -73,21 +78,26 @@
       position: relative;
     }
 
-    /* Праздничный текст */
+    /* Текст */
     h2, .lead {
       text-shadow:
         0 0 4px #ff8bd3,
         0 0 10px #ff50a8,
         0 0 18px rgba(255, 0, 130, 0.9);
       color: #ffe3ff;
+      letter-spacing: 1px;
+    }
+
+    h2 {
+      font-size: 42px;
     }
 
     .lead {
-      font-size: 22px;
+      font-size: 26px;
       margin-bottom: 20px;
     }
 
-    /* Поля */
+    /* Форма */
     .field-wrapper {
       position: relative;
       margin-bottom: 12px;
@@ -100,8 +110,8 @@
       border: 1px solid rgba(255,255,255,0.3);
       background: rgba(255,255,255,0.15);
       color: white;
-      font-size: 20px;
-      font-family: 'Rubik Wet Paint', cursive;
+      font-size: 22px;
+      font-family: 'Marck Script', cursive;
       outline: none;
       box-sizing: border-box;
       text-shadow: 0 0 4px black;
@@ -116,8 +126,8 @@
       pointer-events: none;
     }
 
-    /* Кнопка */
-    button {
+    /* Кнопки */
+    button, .extra-btn {
       width: 100%;
       padding: 15px;
       margin-top: 10px;
@@ -125,15 +135,15 @@
       border: none;
       border-radius: 12px;
       color: #fff0ff;
-      font-size: 22px;
+      font-size: 24px;
       cursor: pointer;
       box-shadow: 0 8px 25px rgba(255,40,100,0.4);
       transition: 0.25s;
-      font-family: 'Marck Script', cursive;
-      text-shadow: 0 0 4px #000;
+      font-family: 'Ruslan Display', cursive;
+      text-shadow: 0 0 5px #000;
     }
 
-    button:hover {
+    button:hover, .extra-btn:hover {
       transform: translateY(-3px);
       box-shadow: 0 12px 35px rgba(255,40,100,0.6);
     }
@@ -150,6 +160,7 @@
       flex-direction: column;
       text-align: center;
       z-index: 99;
+      font-family: 'Ruslan Display', cursive;
     }
 
     .gift {
@@ -185,17 +196,12 @@
 
   <!-- Гирлянда -->
   <div class="garland">
-    <div class="bulb"></div>
-    <div class="bulb"></div>
-    <div class="bulb"></div>
-    <div class="bulb"></div>
-    <div class="bulb"></div>
+    <div class="bulb"></div><div class="bulb"></div><div class="bulb"></div><div class="bulb"></div><div class="bulb"></div>
   </div>
 
-  <!-- Форма -->
   <div class="container">
     <h2>🎅 Тайный Санта</h2>
-    <p class="lead">Мы отправим его на Wildberries — просто заполни форму 🎁</p>
+    <p class="lead"> Твой подарок отправим на Wildberries — просто заполни форму 🎁</p>
 
     <div class="field-wrapper">
       <input id="name" class="input-field" placeholder="Имя">
@@ -229,11 +235,9 @@
 
     <button onclick="sendWish()">Отправить желание</button>
 
-<!-- Новые кнопки -->
-<button class="extra-btn" onclick="generateWish()">🎲 Сгенерировать желание</button>
-<button class="extra-btn" onclick="checkStatus()">📦 Проверить статус подарка</button>
-<button class="extra-btn" onclick="showHoroscope()">🔮 Новогодний гороскоп</button>
-
+    <button class="extra-btn" onclick="generateWish()">🎲 Сгенерировать желание</button>
+    <button class="extra-btn" onclick="checkStatus()">📦 Проверить статус подарка</button>
+    <button class="extra-btn" onclick="showHoroscope()">🔮 Новогодний гороскоп</button>
   </div>
 
   <!-- Popup -->
@@ -243,86 +247,7 @@
     <p>Оно уже улетает к твоему Тайному Санте 🎄</p>
   </div>
 
-<script>
-  function sendWish() {
-    const p = popup;
-    p.style.display = "flex";
-    setTimeout(()=> p.style.display = "none", 2400);
-  }
-
-  /* ❄ генератор снежинок */
-  function createSnowflake() {
-    const snow = document.createElement("div");
-    snow.classList.add("snowflake");
-    snow.textContent = "❄";
-    snow.style.left = Math.random() * 100 + "vw";
-    snow.style.animationDuration = 4 + Math.random() * 5 + "s";
-    snow.style.fontSize = 12 + Math.random() * 18 + "px";
-    document.body.appendChild(snow);
-    setTimeout(() => snow.remove(), 9000);
-  }
-
-  setInterval(createSnowflake, 150);
-</script>
-<!-- Дополнительный popup -->
-<div class="popup" id="extraPopup">
-  <div class="popup-content" id="extraPopupText"></div>
-</div>
-
-<script>
-
-const wishes = [
-  "Уютный новогодний плед ❄️",
-  "Светящаяся гирлянда ✨",
-  "Коробка любимых сладостей 🍬",
-  "Аромасвеча с запахом Нового года 🎄",
-  "Мини-лампа для фото 📸",
-  "Игрушка на ёлку с моим именем 🎀",
-  "Набор горячего шоколада ☕",
-  "Павербанк (да, Санта о тебе заботится) 🔋",
-];
-
-const horoscopes = [
-  "Этот Новый год принесёт тебе подарок, который ты давно хотел 🎁",
-  "Твой Тайный Санта уже выбрал то, что заставит тебя улыбнуться ✨",
-  "Грядёт сюрприз, который согреет твоё сердце ❄️",
-  "Тебя ждёт подарок «как в кино» — яркий и неожиданный 🎬",
-  "Твой Санта вложил в подарок немного магии 🎀",
-  "Скоро случится маленькое чудо — будь готов 🎄",
-];
-
-function showPopup(message) {
-  const popup = document.getElementById("extraPopup");
-  const text = document.getElementById("extraPopupText");
-
-  text.innerHTML = message;
-  popup.style.display = "flex";
-
-  setTimeout(() => {
-    popup.style.opacity = "1";
-  }, 50);
-
-  setTimeout(() => {
-    popup.style.opacity = "0";
-    setTimeout(() => popup.style.display = "none", 300);
-  }, 2600);
-}
-
-function generateWish() {
-  const random = wishes[Math.floor(Math.random() * wishes.length)];
-  showPopup("🎲 Твоя случайная хотелка:<br><br><b>" + random + "</b>");
-}
-
-function checkStatus() {
-  showPopup("📦 Твой подарок упаковывается<br>и скоро отправится к тебе! 🎁✨");
-}
-
-function showHoroscope() {
-  const random = horoscopes[Math.floor(Math.random() * horoscopes.length)];
-  showPopup("🔮 Новогодний прогноз:<br><br><b>" + random + "</b>");
-}
-
-</script>
-
-</body>
-</html>
+  <script>
+    function sendWish() {
+      const p = popup;
+      p.style
