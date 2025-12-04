@@ -3,13 +3,10 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Тайный Санта 🎅✨</title>
+  <title>Тайный Санта 🎁</title>
 
-  <!-- Новый праздничный кириллица-шрифт для заголовков -->
-  <link href="https://fonts.googleapis.com/css2?family=Ruslan+Display&display=swap" rel="stylesheet">
-
-  <!-- Праздничный рукописный шрифт для полей -->
-  <link href="https://fonts.googleapis.com/css2?family=Marck+Script&display=swap" rel="stylesheet">
+  <!-- Шрифт в стиле Wildberries -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
     body {
@@ -19,148 +16,102 @@
       display: flex;
       justify-content: center;
       align-items: center;
-
       background-image:
-        linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
+        linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
         url('https://images.unsplash.com/photo-1513639725746-c5d3e861f32a?auto=format&fit=crop&w=1600&q=80');
       background-size: cover;
       background-position: center;
-
-      color: #ffe9ff;
-
-      box-shadow:
-        inset 0 0 80px rgba(255, 0, 80, 0.5),
-        inset 0 0 140px rgba(255, 200, 255, 0.35),
-        inset 0 0 200px rgba(255, 100, 200, 0.25);
-
-      font-family: 'Ruslan Display', cursive;
+      font-family: 'Montserrat', sans-serif;
+      color: #ffffff;
     }
 
-    /* Гирлянда */
-    .garland {
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 14px;
-      padding: 18px;
-      z-index: 10;
-    }
-
-    .bulb {
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      animation: blink 1.8s infinite alternate;
-    }
-
-    .bulb:nth-child(1) { background: #ff4d6d; animation-delay: 0s; }
-    .bulb:nth-child(2) { background: #ffb74d; animation-delay: .3s; }
-    .bulb:nth-child(3) { background: #4dd0e1; animation-delay: .6s; }
-    .bulb:nth-child(4) { background: #81c784; animation-delay: .9s; }
-    .bulb:nth-child(5) { background: #ba68c8; animation-delay: 1.2s; }
-
-    @keyframes blink {
-      0% { opacity: 0.35; transform: scale(.9); }
-      100% { opacity: 1; transform: scale(1.25); }
-    }
-
-    /* Основной блок */
+    /* контейнер */
     .container {
       background: rgba(0, 0, 0, 0.55);
-      padding: 30px;
-      border-radius: 16px;
+      padding: 32px;
+      border-radius: 18px;
       max-width: 480px;
       width: 90%;
       text-align: center;
-      backdrop-filter: blur(5px);
-      position: relative;
-    }
-
-    /* Текст */
-    h2, .lead {
-      text-shadow:
-        0 0 4px #ff8bd3,
-        0 0 10px #ff50a8,
-        0 0 18px rgba(255, 0, 130, 0.9);
-      color: #ffe3ff;
-      letter-spacing: 1px;
+      backdrop-filter: blur(6px);
+      box-shadow: 0 0 40px rgba(155, 48, 255, 0.35);
     }
 
     h2 {
-      font-size: 42px;
+      font-weight: 700;
+      font-size: 32px;
+      color: #ffffff;
+      text-shadow: 0 0 12px rgba(155,48,255,0.6);
     }
 
     .lead {
-      font-size: 26px;
+      font-size: 20px;
+      font-weight: 500;
       margin-bottom: 20px;
+      color: #ffd6ff;
+      text-shadow: 0 0 10px rgba(155,48,255,0.7);
     }
 
-    /* Форма */
+    /* поля */
     .field-wrapper {
       position: relative;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
     }
 
     .input-field, select, textarea {
       width: 100%;
-      padding: 12px 46px 12px 14px;
-      border-radius: 10px;
+      padding: 12px 46px 12px 16px;
+      border-radius: 12px;
       border: 1px solid rgba(255,255,255,0.3);
       background: rgba(255,255,255,0.15);
       color: white;
-      font-size: 22px;
-      font-family: 'Marck Script', cursive;
+      font-size: 18px;
       outline: none;
       box-sizing: border-box;
-      text-shadow: 0 0 4px black;
     }
 
     .icon {
       position: absolute;
-      right: 12px;
+      right: 14px;
       top: 50%;
       transform: translateY(-50%);
-      font-size: 22px;
+      font-size: 20px;
       pointer-events: none;
     }
 
-    /* Кнопки */
-    button, .extra-btn {
+    /* кнопки */
+    button {
       width: 100%;
-      padding: 15px;
-      margin-top: 10px;
-      background: linear-gradient(90deg,#ff4d9e,#ff006f);
+      padding: 14px;
+      margin-top: 12px;
+      border-radius: 14px;
       border: none;
-      border-radius: 12px;
-      color: #fff0ff;
-      font-size: 24px;
       cursor: pointer;
-      box-shadow: 0 8px 25px rgba(255,40,100,0.4);
+      color: white;
+      font-size: 20px;
+      font-weight: 600;
+      background: linear-gradient(90deg, #9B30FF, #D900FF);
+      box-shadow: 0 6px 25px rgba(155,48,255,0.5);
       transition: 0.25s;
-      font-family: 'Ruslan Display', cursive;
-      text-shadow: 0 0 5px #000;
     }
 
-    button:hover, .extra-btn:hover {
+    button:hover {
       transform: translateY(-3px);
-      box-shadow: 0 12px 35px rgba(255,40,100,0.6);
+      box-shadow: 0 10px 35px rgba(155,48,255,0.7);
     }
 
-    /* Popup */
+    /* popup */
     .popup {
       display:none;
       position: fixed;
       inset: 0;
       background: rgba(0,0,0,0.85);
-      color: white;
       justify-content: center;
       align-items: center;
       flex-direction: column;
       text-align: center;
       z-index: 99;
-      font-family: 'Ruslan Display', cursive;
+      color: white;
     }
 
     .gift {
@@ -170,11 +121,36 @@
 
     @keyframes fly {
       0% { transform: translateY(0) scale(1);opacity:1 }
-      50% { transform: translateY(-200px) scale(1.1); }
-      100% { transform: translateY(-600px) scale(0.3); opacity:0 }
+      50% { transform: translateY(-200px) scale(1.1);}
+      100% { transform: translateY(-600px) scale(0.3);opacity:0 }
     }
 
-    /* ❄ Падающий снег */
+    /* popup 2 */
+    #extraPopup {
+      display: none;
+      opacity: 0;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.75);
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      z-index: 200;
+      transition: opacity 0.3s ease;
+      padding: 20px;
+    }
+
+    #extraPopupText {
+      background: rgba(0,0,0,0.5);
+      padding: 26px 30px;
+      border-radius: 16px;
+      font-size: 24px;
+      max-width: 80%;
+      line-height: 1.4;
+      text-shadow: 0 0 6px black;
+    }
+
+    /* снег */
     .snowflake {
       position: fixed;
       top: -10px;
@@ -189,19 +165,16 @@
       0% { transform: translateY(0) rotate(0deg); }
       100% { transform: translateY(110vh) rotate(360deg); }
     }
+
   </style>
 </head>
 
 <body>
 
-  <!-- Гирлянда -->
-  <div class="garland">
-    <div class="bulb"></div><div class="bulb"></div><div class="bulb"></div><div class="bulb"></div><div class="bulb"></div>
-  </div>
-
   <div class="container">
-    <h2>🎅 Тайный Санта</h2>
-    <p class="lead"> Твой подарок отправим на Wildberries — просто заполни форму 🎁</p>
+
+    <h2>🎁 Тайный Санта</h2>
+    <p class="lead">Мы отправим твоё желание на Wildberries — просто заполни форму ✨</p>
 
     <div class="field-wrapper">
       <input id="name" class="input-field" placeholder="Имя">
@@ -225,7 +198,7 @@
         <option>Сладости</option>
         <option>Удиви меня</option>
       </select>
-      <div class="icon">🎁</div>
+      <div class="icon">🎀</div>
     </div>
 
     <div class="field-wrapper">
@@ -234,20 +207,92 @@
     </div>
 
     <button onclick="sendWish()">Отправить желание</button>
+    <button onclick="generateWish()">🎲 Сгенерировать желание</button>
+    <button onclick="checkStatus()">📦 Проверить статус подарка</button>
+    <button onclick="showHoroscope()">🔮 Новогодний гороскоп</button>
 
-    <button class="extra-btn" onclick="generateWish()">🎲 Сгенерировать желание</button>
-    <button class="extra-btn" onclick="checkStatus()">📦 Проверить статус подарка</button>
-    <button class="extra-btn" onclick="showHoroscope()">🔮 Новогодний гороскоп</button>
   </div>
 
-  <!-- Popup -->
+  <!-- основной popup -->
   <div class="popup" id="popup">
     <div class="gift">🎁</div>
     <h3>Желание принято!</h3>
-    <p>Оно уже улетает к твоему Тайному Санте 🎄</p>
+    <p>Оно уже отправляется к твоему Тайному Санте ✨</p>
   </div>
 
-  <script>
-    function sendWish() {
-      const p = popup;
-      p.style
+  <!-- второй popup -->
+  <div class="popup" id="extraPopup">
+    <div id="extraPopupText"></div>
+  </div>
+
+<script>
+function sendWish() {
+  const p = popup;
+  p.style.display = "flex";
+  setTimeout(()=> p.style.display = "none", 2400);
+}
+
+/* ❄ снег */
+function createSnowflake() {
+  const snow = document.createElement("div");
+  snow.classList.add("snowflake");
+  snow.textContent = "❄";
+  snow.style.left = Math.random() * 100 + "vw";
+  snow.style.animationDuration = 4 + Math.random() * 5 + "s";
+  snow.style.fontSize = 12 + Math.random() * 18 + "px";
+  document.body.appendChild(snow);
+  setTimeout(() => snow.remove(), 9000);
+}
+setInterval(createSnowflake, 150);
+
+/* popups */
+const wishes = [
+  "Уютный плед ❄️",
+  "Гирлянда ✨",
+  "Коробка сладостей 🍬",
+  "Аромасвеча 🎄",
+  "Мини-лампа 📸",
+  "Игрушка на ёлку 🎀",
+  "Набор горячего шоколада ☕",
+  "Павербанк 🔋",
+];
+
+const horoscopes = [
+  "Этот год принесёт тебе подарок мечты 🎁",
+  "Скоро тебя ждёт сюрприз ✨",
+  "Твой Тайный Санта выбрал кое-что особенное ❄️",
+  "Грядёт маленькое чудо 🎄",
+];
+
+function showPopup(message) {
+  const popup = document.getElementById("extraPopup");
+  const text = document.getElementById("extraPopupText");
+
+  text.innerHTML = message;
+  popup.style.display = "flex";
+
+  setTimeout(() => popup.style.opacity = "1", 20);
+  setTimeout(() => {
+    popup.style.opacity = "0";
+    setTimeout(() => popup.style.display = "none", 300);
+  }, 2600);
+}
+
+function generateWish() {
+  const random = wishes[Math.floor(Math.random() * wishes.length)];
+  showPopup("🎲 Твоя случайная хотелка:<br><br><b>" + random + "</b>");
+}
+
+function checkStatus() {
+  showPopup("📦 Твой подарок почти готов! 🎁");
+}
+
+function showHoroscope() {
+  const random = horoscopes[Math.floor(Math.random() * horoscopes.length)];
+  showPopup("🔮 Новогодний прогноз:<br><br><b>" + random + "</b>");
+}
+</script>
+
+</body>
+</html>
+
