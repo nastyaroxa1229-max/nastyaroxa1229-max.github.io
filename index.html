@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Тайный Санта 🎅✨</title>
 
-  <!-- Новый праздничный русский шрифт -->
-  <link href="https://fonts.googleapis.com/css2?family=Rubik+Bubbles&display=swap" rel="stylesheet">
+  <!-- Праздничный русский шрифт -->
+  <link href="https://fonts.googleapis.com/css2?family=Rubik+Wet+Paint&display=swap" rel="stylesheet">
 
   <style>
-    /* Фон как в самом первом коде */
+    /* Фон + светящиеся края */
     body {
       margin: 0;
       padding: 0;
@@ -18,15 +18,50 @@
       justify-content: center;
       align-items: center;
       background-image:
-        linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+        linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
         url('https://images.unsplash.com/photo-1513639725746-c5d3e861f32a?auto=format&fit=crop&w=1600&q=80');
       background-size: cover;
       background-position: center;
-      font-family: 'Rubik Bubbles', cursive;
-      color: white;
+      font-family: 'Rubik Wet Paint', cursive;
+      color: #ffe9ff;
+
+      box-shadow:
+        inset 0 0 80px rgba(255, 0, 80, 0.5),
+        inset 0 0 140px rgba(255, 200, 255, 0.35),
+        inset 0 0 200px rgba(255, 100, 200, 0.25);
     }
 
-    /* Контейнер */
+    /* Гирлянда */
+    .garland {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 14px;
+      padding: 18px;
+      z-index: 10;
+    }
+
+    .bulb {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      animation: blink 1.8s infinite alternate;
+    }
+
+    .bulb:nth-child(1) { background: #ff4d6d; animation-delay: 0s; }
+    .bulb:nth-child(2) { background: #ffb74d; animation-delay: .3s; }
+    .bulb:nth-child(3) { background: #4dd0e1; animation-delay: .6s; }
+    .bulb:nth-child(4) { background: #81c784; animation-delay: .9s; }
+    .bulb:nth-child(5) { background: #ba68c8; animation-delay: 1.2s; }
+
+    @keyframes blink {
+      0% { opacity: 0.35; transform: scale(.9); }
+      100% { opacity: 1; transform: scale(1.25); }
+    }
+
+    /* Контейнер формы */
     .container {
       background: rgba(0, 0, 0, 0.55);
       padding: 30px;
@@ -38,15 +73,21 @@
       position: relative;
     }
 
-    /* Текст под заголовком — крупный, сияющий */
-    .lead {
-      font-size: 20px;
-      margin-top: 10px;
-      margin-bottom: 20px;
-      text-shadow: 0 0 8px rgba(255, 200, 240, 0.9), 
-                   0 0 14px rgba(255, 120, 200, 0.5);
+    /* Праздничный текст */
+    h2, .lead {
+      text-shadow:
+        0 0 4px #ff8bd3,
+        0 0 10px #ff50a8,
+        0 0 18px rgba(255, 0, 130, 0.9);
+      color: #ffe3ff;
     }
 
+    .lead {
+      font-size: 22px;
+      margin-bottom: 20px;
+    }
+
+    /* Поля */
     .field-wrapper {
       position: relative;
       margin-bottom: 12px;
@@ -59,10 +100,11 @@
       border: 1px solid rgba(255,255,255,0.3);
       background: rgba(255,255,255,0.15);
       color: white;
-      font-size: 18px;
-      font-family: 'Rubik Bubbles', cursive;
+      font-size: 20px;
+      font-family: 'Rubik Wet Paint', cursive;
       outline: none;
       box-sizing: border-box;
+      text-shadow: 0 0 4px black;
     }
 
     .icon {
@@ -70,23 +112,25 @@
       right: 12px;
       top: 50%;
       transform: translateY(-50%);
-      font-size: 20px;
+      font-size: 22px;
       pointer-events: none;
     }
 
+    /* Кнопка */
     button {
       width: 100%;
       padding: 15px;
       margin-top: 10px;
-      background: linear-gradient(90deg,#ff4976,#ff2e63);
+      background: linear-gradient(90deg,#ff4d9e,#ff006f);
       border: none;
-      border-radius: 10px;
-      color: white;
-      font-size: 20px;
+      border-radius: 12px;
+      color: #fff0ff;
+      font-size: 22px;
       cursor: pointer;
       box-shadow: 0 8px 25px rgba(255,40,100,0.4);
       transition: 0.25s;
-      font-family: 'Rubik Bubbles', cursive;
+      font-family: 'Rubik Wet Paint', cursive;
+      text-shadow: 0 0 4px #000;
     }
 
     button:hover {
@@ -94,7 +138,7 @@
       box-shadow: 0 12px 35px rgba(255,40,100,0.6);
     }
 
-    /* Popup + анимация */
+    /* Popup */
     .popup {
       display:none;
       position: fixed;
@@ -118,11 +162,37 @@
       50% { transform: translateY(-200px) scale(1.1); }
       100% { transform: translateY(-600px) scale(0.3); opacity:0 }
     }
+
+    /* ❄ Падающий снег */
+    .snowflake {
+      position: fixed;
+      top: -10px;
+      color: white;
+      font-size: 18px;
+      opacity: 0.8;
+      animation: fall linear infinite;
+      text-shadow: 0 0 6px white;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(0) rotate(0deg); }
+      100% { transform: translateY(110vh) rotate(360deg); }
+    }
   </style>
 </head>
 
 <body>
 
+  <!-- Гирлянда -->
+  <div class="garland">
+    <div class="bulb"></div>
+    <div class="bulb"></div>
+    <div class="bulb"></div>
+    <div class="bulb"></div>
+    <div class="bulb"></div>
+  </div>
+
+  <!-- Форма -->
   <div class="container">
     <h2>🎅 Тайный Санта</h2>
     <p class="lead">Мы отправим его на Wildberries — просто заполни форму 🎁</p>
@@ -160,6 +230,7 @@
     <button onclick="sendWish()">Отправить желание</button>
   </div>
 
+  <!-- Popup -->
   <div class="popup" id="popup">
     <div class="gift">🎁</div>
     <h3>Желание принято!</h3>
@@ -172,13 +243,21 @@
     p.style.display = "flex";
     setTimeout(()=> p.style.display = "none", 2400);
   }
+
+  /* ❄ генератор снежинок */
+  function createSnowflake() {
+    const snow = document.createElement("div");
+    snow.classList.add("snowflake");
+    snow.textContent = "❄";
+    snow.style.left = Math.random() * 100 + "vw";
+    snow.style.animationDuration = 4 + Math.random() * 5 + "s";
+    snow.style.fontSize = 12 + Math.random() * 18 + "px";
+    document.body.appendChild(snow);
+    setTimeout(() => snow.remove(), 9000);
+  }
+
+  setInterval(createSnowflake, 150);
 </script>
 
 </body>
 </html>
-
-    
-  
-
-   
-  
