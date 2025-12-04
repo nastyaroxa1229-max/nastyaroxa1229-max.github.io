@@ -9,6 +9,77 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
+    /* Popup "Как это работает" */
+#howPopup {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  justify-content: center;
+  align-items: center;
+  z-index: 200;
+  text-align: center;
+  padding: 20px;
+}
+
+.how-box {
+  background: rgba(255,255,255,0.1);
+  padding: 30px;
+  border-radius: 16px;
+  max-width: 450px;
+  width: 90%;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 0 20px rgba(255,0,150,0.5);
+}
+
+.how-box h2 {
+  margin-bottom: 20px;
+  font-size: 28px;
+  color: #ffccfa;
+  text-shadow: 0 0 8px #ff2ec4;
+}
+
+/* Анимированные шаги */
+.steps .step {
+  opacity: 0;
+  transform: translateY(10px);
+  margin-bottom: 14px;
+  font-size: 20px;
+  line-height: 1.35;
+  text-shadow: 0 0 5px black;
+  animation: stepShow 0.8s forwards;
+}
+
+.steps .step:nth-child(1) { animation-delay: 0.2s; }
+.steps .step:nth-child(2) { animation-delay: 0.8s; }
+.steps .step:nth-child(3) { animation-delay: 1.4s; }
+.steps .step:nth-child(4) { animation-delay: 2.0s; }
+
+@keyframes stepShow {
+  0% { opacity: 0; transform: translateY(20px) scale(0.95); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Кнопка закрытия */
+.close-how {
+  margin-top: 20px;
+  padding: 14px 20px;
+  background: linear-gradient(90deg,#ff4da6,#ff009e);
+  border: none;
+  border-radius: 12px;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  width: 100%;
+  box-shadow: 0 0 18px rgba(255,0,140,0.5);
+  transition: 0.25s;
+}
+
+.close-how:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 25px rgba(255,0,170,0.7);
+}
+
     body {
       margin: 0;
       padding: 0;
@@ -228,6 +299,16 @@
   </div>
 
 <script>
+  function showHowItWorks() {
+  const popup = document.getElementById("howPopup");
+  popup.style.display = "flex";
+}
+
+function closeHow() {
+  const popup = document.getElementById("howPopup");
+  popup.style.display = "none";
+}
+
 function sendWish() {
   const p = popup;
   p.style.display = "flex";
@@ -318,6 +399,18 @@ function showHoroscope() {
 </script>
 <div class="popup" id="howPopup">
   <div class="popup-content" id="howText"></div>
+</div>
+<div class="popup" id="howPopup">
+  <div class="how-box">
+    <h2>✨ Как работает наш сайт?</h2>
+    <div class="steps">
+      <div class="step">1️⃣ Ты заполняешь форму: имя, регион, ПВЗ, категорию и хотелку.</div>
+      <div class="step">2️⃣ Мы передаём твоё желание спонсорам Wildberries.</div>
+      <div class="step">3️⃣ Спонсоры подбирают подарок и отправляют его в указанный ПВЗ.</div>
+      <div class="step">4️⃣ Когда подарок прибудет, ты получишь уведомление от WB 📦💜</div>
+    </div>
+    <button class="close-how" onclick="closeHow()">Отлично! Вперёд за подарками!</button>
+  </div>
 </div>
 
 </body>
